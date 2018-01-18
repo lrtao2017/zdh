@@ -1,11 +1,11 @@
 #coding=utf-8
 '''
-retrieving information on running processes 
-and system utilization (CPU, memory, disks, 
+retrieving information on system utilization (CPU, memory, disks, 
 network, sensors
 '''
 
 import psutil
+import datetime
 
 mem = psutil.virtual_memory()
 mem_total = mem.total / 1024 / 1024 
@@ -20,6 +20,9 @@ disk_used_percent = psutil.disk_usage('/').percent
 
 eth0_sent = psutil.net_io_counters(pernic=True).get('eth0').bytes_sent/1024/1024
 eth0_recv = psutil.net_io_counters(pernic=True).get('eth0').bytes_recv/1024/1024
+
+Boot_time = datetime.datetime.fromtimestamp(psutil.boot_time()).strftime("%Y-%m-%d %H:%M:%S")
+
 print "information of Memory:"
 print "total(M) %15s " % mem_total
 print "used(M) %15s " % mem_used
@@ -36,3 +39,5 @@ print '\n'
 print "information of Network"
 print "eth0_sent(M) %13s" % eth0_sent
 print "eth0_recv(M) %13s" % eth0_recv
+print '\n'
+print "Boot_time %15s" % Boot_time
