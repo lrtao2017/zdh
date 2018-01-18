@@ -26,13 +26,13 @@ print "used(M) %15s " % mem_used
 print '\n'
 print "information of Cpu"
 print "user %20s" % cpu_user
-print "user_percent %15s" % cpu_user_percent
+print "user_percent %10s" % cpu_user_percent
 print "count %15s" % cpu_count
 print '\n'
 print "information of Disk"
-print "used_percent %s" % disk_used_percent
-print "disk_read_count %s" % sda1_read_count
+print "used_percent %13s" % disk_used_percent
+print "disk_read_count %10s" % sda1_read_count
 print '\n'
 print "information of Network"
-print "eth0_sent(M) %s" % eth0_sent
-print "eth0_recv(M) %s" % eth0_recv
+print "eth0_sent(M) %13s" % eth0_sent
+print "eth0_recv(M) %13s" % eth0_recv
