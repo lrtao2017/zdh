@@ -5,9 +5,9 @@ from email.mime.text import MIMEText
 
 HOST = "smtp.wltest.com"
 SUBJECT = "guangwang liuliangshuju baobiao"
-TO = "liuweijie@itiaoling.com"
-CC = "liuweijie@wltest.com"
-FROM = "liuweijie@wltest.com"
+TO = "liuweijie@iiaoing.com"
+CC = "liuweijie@wtest.com"
+FROM = "liuweijie@wtest.com"
 
 msg = MIMEText("""
       <table width="800" border="0" cellspacing="0" cellpadding="4">
@@ -41,7 +41,7 @@ try:
     server.connect(HOST,"25")
     #server.ehlo()
     #server.starttls()
-    server.login("liuweijie@wltest.com","Rfd123.com")
+    server.login("liuweijie@wtest.com","123.com")
     server.sendmail(FROM, [TO,CC], msg.as_string())
     server.quit()
     print "Sent OK"

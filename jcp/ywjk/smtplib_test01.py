@@ -3,11 +3,11 @@
 import smtplib
 import string
 
-HOST = "smtp.wltest.com"
+HOST = "smtp.wtest.com"
 SUBJECT = "Test email from Python"
-TO = "liuweijie@itiaoling.com"
-CC = "zhangmei@itiaoling.com"
-FROM = "liuweijie@wltest.com"
+TO = "liuweijie@iiaoing.com"
+CC = "zhangmei@iiaoing.com"
+FROM = "liuweijie@wtest.com"
 text = "Python rules them all!"
 
 BODY = string.join((
@@ -23,6 +23,6 @@ server = smtplib.SMTP()
 server.connect(HOST,"25")
 #server.ehlo()
 #server.starttls()
-server.login("liuweijie@wltest.com","Rfd123.com")
+server.login("liuweijie@wtest.com","123.com")
 server.sendmail(FROM, [TO,CC], BODY)
 server.quit()
