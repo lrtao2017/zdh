@@ -3,7 +3,7 @@
 import smtplib
 from email.mime.text import MIMEText
 
-HOST = "smtp.wltest.com"
+HOST = "smtp.wtest.com"
 SUBJECT = "guangwang liuliangshuju baobiao"
 TO = "liuweijie@iiaoing.com"
 CC = "liuweijie@wtest.com"
