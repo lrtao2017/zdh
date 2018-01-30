@@ -4,7 +4,7 @@ import smtplib
 from email.mime.text import MIMEText
 
 HOST = "smtp.wtest.com"
-SUBJECT = "guangwang liuliangshuju baobiao"
+SUBJECT = "官网流量数据报表"
 TO = "liuweijie@iiaoing.com"
 CC = "liuweijie@wtest.com"
 FROM = "liuweijie@wtest.com"
