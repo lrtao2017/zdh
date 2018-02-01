@@ -8,12 +8,24 @@ bluser = 'root'
 blpasswd = '123456'
 
 hostname = '127.0.0.1'
-username = 'test'
+username = 'root'
 password = '123456'
+
+tmpdir = '/tmp'
+remotedir = '/tmp'
+localpath = '/tmp/syslogin.log'
+tmppath = tmpdir+r'/syslogin.log'
+remotepath = remotedir+r'/syslogin.log'
 
 port = 22
 passinfo="\'s password: "
 paramiko.util.log_to_file('/tmp/syslogin.log')
+
+t = paramiko.Transport((blip, port))
+t.connect(username= bluser, password = blpasswd)
+sftp = paramiko.SFTPClient.from_transport(t)
+sftp.put(localpath,tmppath)
+sftp.close()
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -24,7 +36,7 @@ channel.settimeout(10)
 
 buff = ''
 resp = ''
-channel.send('ssh '+username+'@'+hostname+'\n')
+channel.send('scp '+tmppath+' '+username+'@'+hostname+':'+remotepath+'\n')
 while not buff.endswith(passinfo):
     try:
         resp = channel.recv(9999)
@@ -41,10 +53,10 @@ while not buff.endswith(passinfo):
 channel.send(password+'\n')
 
 buff = ''
-
-while not buff.endswith('$'):  
+while not buff.endswith('#'):  
 #while not buff.find('$'):
     resp = channel.recv(9999)
+    print resp
     if not resp.find(passinfo) == -1:
         print 'Error info: Authentication failed.'
         channel.close()
@@ -52,17 +64,6 @@ while not buff.endswith('$'):
         sys.exit()
     buff += resp.strip()
     #buff += resp
-
-channel.send('ifconfig\n')
-
-buff = ''
-
-try:
-    while buff.find('$') == -1:
-        resp = channel.recv(9999)
-        buff += resp
-except Exception, e:
-    print "Error info:" + str(e)
     
 print buff
 channel.close()
